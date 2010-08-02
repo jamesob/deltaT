@@ -1,0 +1,46 @@
+{:title "Fixing poor volume adjustment in Lucid Lynx (Master vs. PCM)"
+ :labels (list "volume", "ubuntu lucid", "master", "pcm")}
+
+<p>I recently updated my Ubuntu installation to Lucid Lynx and I noticed funky behavior in the volume adjustment. It seems in Lynx that changing the volume of the Master channel results in poor volume adjustment; the lowest 20% of the volume bar is where all of the change in amplitude happens.
+
+<p>Through some testing with alsamixer, I figured the channel I really wanted to be tweaking is PCM. How do we change adjustment of volume to default to PCM instead of master? Here's a workaround.
+
+<p>Crack open <span id="inline-code">/usr/share/pulseaudio/alsa-mixer/paths/analog-output.conf.common</span> and look for the following lines:
+
+<pre>[Element PCM]
+switch = mute
+volume = merge
+override-map.1 = all
+override-map.2 = all-left,all-right</pre>
+
+Add these lines before
+<pre>
+[Element Master]
+switch = mute
+volume = ignore
+</pre>
+and these after
+<pre>
+[Element LFE]
+switch = mute
+volume = ignore
+</pre>
+
+This results in
+<pre>
+[Element Master]
+switch = mute
+volume = ignore
+
+[Element PCM]
+switch = mute
+volume = merge
+override-map.1 = all
+override-map.2 = all-left,all-right
+
+[Element LFE]
+switch = mute
+volume = ignore
+</pre>
+
+Save/quit, restart. Yanked from <a href="http://ubuntuforums.org/showpost.php?p=8314847&postcount=4">here</a>.

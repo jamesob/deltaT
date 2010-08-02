@@ -1,0 +1,131 @@
+{:title "Ubuntu 10.04 LTS on Aluminum MacBook Pro 6,2"
+ :labels (list "ubuntu", "macbookpro6,2", "lucid", "10.04")}
+
+Lack of a tiling window manager drove me away from OS X rapidly. 
+OS X, however, is irreplacable for things like
+media consumption and presentation, so I decided to dual boot.
+What follows are the steps I took to install Ubuntu 10.04 on my
+system alongside OS X and a description of the resulting performance.
+
+<h3>Installing 10.04 LTS</h3>
+<ol>
+	<li>Here's the rEFIt, partition, Ubuntu spiel. The first link below is the 
+	basic procedure. The second link is a workaround for when you're 
+	specifying where to install grub. If you follow the first set of 
+	instructions, installation of grub onto /dev/sda3 (or any non-OS X partition)
+	is not allowed.
+	<ul>
+		<li><a href="https://help.ubuntu.com/community/MactelSupportTeam/AppleIntelInstallation#Dual-Boot:%20Mac%20OSX%20and%20Ubuntu">Apple Installation [help.ubuntu.com]</a>
+		<li><a href="http://ubuntuforums.org/showpost.php?p=9344561&postcount=5">
+		MacBook Pro bootloader workaround [ubuntuforums.org]</a>
+		<li>Contrary to both guides, the version of rEFIt I have installed <b>did not</b>
+		allow me to sync partition tables; it said something to the effect of ``press
+		any key to continue because your tables are already synced''. From there, I'd try 
+		to boot into Ubuntu but rEFIt would freeze at the grey tux logo. It turns out
+		you need to click the shutdown button <b>within rEFIt</b> to get everything to
+		sync correctly. Once I did that, Ubuntu boots fine.
+	</ul>
+	<li>Next, I followed <a href=https://help.ubuntu.com/community/MacBookPro6-2/Lucid#Sensors>
+	6,2 specific instructions</a> for setting up the little, important things. The Ubuntu
+	wiki is screwing the pooch as we speak:
+
+	<h4>Fan control</h4> currently isn't implemented for the macbookpro6,2.
+	As you might imagine, this is slightly worrisome. Luckily, there's a fix,
+	but it ain't pretty for someone who's normally entrenched in the world of El Jobso.
+
+	<p>All of the relevant information concerning system temperature is in
+	<span class="inline-code">/sys/devices/platform/applesmc.768/</span>. In
+	order to get at this information in an intelligent way, we use the <span class="inline-code">
+	sensors</span> command. Go ahead, try it. You'll notice you get back 
+	unintelligible information: the hell is ``temp3''? 
+
+	<p>To make sense of this information, crack open <span class="inline-code">/etc/sensors3.conf</span>
+	and add the following to the bottom:
+<pre>
+chip "applesmc-isa-0300"
+	label "temp1" "Ambient"
+	label "temp2" "Enclosure Bottom"
+	label "temp3" "CPU A"
+	label "temp4" "unknown TC0P"
+	label "temp5" "GPU Heatsink"
+	label "temp6" "GPU"
+	label "temp7" "unknown TG0T"
+	label "temp8" "Heatsink A"
+	label "temp9" "Heatsink B"
+	label "temp10" "Memory Controller"
+	label "temp11" "unknown Ts0P"
+	label "temp12" "unknown Ts1P"
+	label "fan1" "Left Fan"
+	label "fan2" "Right Fan"
+
+chip "coretemp-isa-0000"
+	label temp1 "Core0"
+
+chip "coretemp-isa-0001"
+	label temp1 "Core1"
+</pre>
+	Now try <span class="inline-code">sensors</span> again: more reasonable output.
+
+	<p>This doesn't help us temper heat on the CPU; we need a way to adjust the fan
+	speed to prevent the computer from getting too hot. Allan McRae has done a
+	<a href="http://allanmcrae.com/2010/05/simple-macbook-pro-fan-daemon/">nice
+	write-up</a> on this, but just for kicks, I'll write up an Ubuntu-friendly
+	version of his regulation algorithm, which is nice.
+	
+
+
+	<h4>Screen and keyboard brightness</h4> don't work as per the 
+	<span class="inline-code">pommed</span> and
+	<span class="inline-code">mbp-nvidia-bl-dkms</span> packages as of this writing.
+	Some guy apparently has fixed them for 6,2 (sort of), so here are the working (sort of)
+	packages I obtained from <a href="http://ubuntuforums.org/showthread.php?t=1474487">
+	this thread:</a>
+		<ul>
+			<li><a href="mbp/mbp-nvidia-bl-dkms_0.24.2~lucid_all.deb.gz">mbp-nvidia-bl-dkms</a>,
+			<li><a href="mbp/pommed_1.31~dfsg-1_amd64.deb.gz">pommed</a>.
+		</ul>
+	Install, reboot, and you coo. The one caveat is that you can never fully disable
+	the keyboard backlight using the F5 shortcut. I haven't looked into why.
+
+	<h4>Touchpad sensitivity</h4>
+	I almost never use the physical click mechanism of the touchpad, so when I found the
+	touchpad to be aggrivatingly sensivtive as I was typing, I didn't want to
+	disable the tap-to-click ability. Instead, I found <span
+	class="inline-code">syndaemon</span>. Man it for the details, then add this
+	line to your <span class="inline-code">.xsession</span> or whatever your
+	equivalent is.
+	<pre>syndaemon -i 0.5 -d</pre>
+
+</ol>
+
+<h3>Optional, nice things</h3>
+
+<h4>Boot and framebuffer resolution</h4>
+
+<p>Since I'm a sap for things visual, I modified the boot process 
+to be verbose and the framebuffer resolution to match the MacBook's
+native resolution. I finally found the information to do all of this
+after unsuccessfully dredging through the Ubuntu forums and eventually
+landing at an Arch Linux wiki page. The Arch guys have their ducks
+in a row. 
+
+<p>Since 10.04 ships with grub2 instead of grub legacy, the way you actually
+set this stuff is different than what most guides you'll find detail.
+The file you want to modify is <span id="inline-code">/etc/default/grub</span>.
+
+<ul>
+	<li>Framebuffer res.: 
+	<pre>GRUB_GFXMODE=1024x768x32
+GRUB_GFXPAYLOAD_LINUX=keep</pre>
+	The first command tells grub its resolution; the second tells grub to
+	tell the kernel to retain this resolution while booting.
+
+	<li>Verbose boot (doesn't do much with 10.04):
+	<pre>GRUB_CMDLINE_LINUX_DEFAULT="splash"</pre>
+
+	<li>After making the changes, you enact them by running
+	<pre>sudo grub-mkconfig -o /boot/grub/grub.cfg</pre>
+	which generates a new grub configuration file.
+</ul>
+
+

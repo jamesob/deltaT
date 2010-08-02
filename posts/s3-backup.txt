@@ -1,0 +1,145 @@
+{:title "Backing up personal data with Amazon's S3 and Duplicity"
+ :labels (list "backup" "personal data" "amazon s3" "duplicity")}
+
+<p>I have a lot data on my computer that I'd be very sad if I lost; I'm sure
+most other people do, too.
+
+<p>While mirroring data across my own computers makes more sense than doing
+nothing to guard against the loss of precious data, home backup doesn't make as 
+much sense as storing my things off-site somewhere that does this type of 
+operation more... professionally.
+
+<h3>Enter Amazon S3</h3>
+
+<p>Earlier this afternoon I began to scout around for someone to throw my data
+at. Most of the sites I visited were hawking some GUI front-end for backup; I'm
+not interested in that.
+
+<p>After <a href="http://searchyc.com/">searching Hacker News</a>, which is
+usually the wise choice in situations like this, I found that most of the
+commenters there used some sort of wrapper to backup directly to <b>Amazon's
+S3</b> service. S3 charges <b>$0.15/GB/month</b> for storage and something like
+<b>$0.10/GB</b> for transfer. 
+
+<p>Deal. I bought in immediately; getting into this, I figured there was a high
+probability of me paying a flat rate for a fixed amount of storage, some of
+which I wouldn't use, like a chump-sicle. This isn't the case with S3's pricing
+model.
+
+<p>So, I registered <a href="http://aws.amazon.com/s3/">here</a>.
+
+<h3>Actually backing up</h3>
+
+<p>A common approach on Hacker News is to use <a
+href="http://duplicity.nongnu.org/"> duplicity</a> in conjunction with S3. S3
+provides the storage, duplicity does the actual transfer using credentials you
+get from your S3 account. From the duplicity man page:
+
+<pre>Duplicity incrementally backs up files and directory by
+encrypting tar-format volumes with GnuPG and uploading them
+to a remote (or local) file server.  Currently local, ftp,
+ssh/scp, rsync, WebDAV, WebDAVs, HSi and Amazon S3 backends
+are available. Because duplicity uses librsync, the
+incremental archives are space efficient and only record the
+parts of files that have changed since the last backup.
+Currently duplicity supports deleted files, full Unix
+permissions, directories, symbolic links, fifos, etc., but
+not hard links.</pre>
+
+<p>I spent a little time fiddling around with building duplicity from source,
+then eventually wised up <a href="#fn1">[0]</a> and issued 
+<pre>$ sudo port install duplicity</pre>
+
+<p>After getting duplicity, I followed the <a
+href="http://www.randys.org/2007/11/16/how-to-automated-backups-to-amazon-s-s3-with-duplicity/">
+instructions here</a> to generate a gnugp key and put together a backup script.
+
+<p>Modifying the backup script listed above, I had to figure out which
+directories I want actively stored on S3; I did so by calling tree on my home:
+<pre>$ sudo port install tree
+$ cd && tree -d -L 2 .</pre>
+
+<p>After looking at the cute tree printout, I modified the <span
+class="inline-code">--exclude</span> and <span
+class="inline-code">--include</span> arguments in the backup script accordingly.
+For kicks, here's my modified backup script:
+<pre>
+#!/bin/bash
+# Export some ENV variables so you don't have to type anything
+export AWS_ACCESS_KEY_ID=[my aws access key]
+export AWS_SECRET_ACCESS_KEY=[my aws secret key]
+export PASSPHRASE=[my gpg passphrase]
+
+GPG_KEY=[my gpg key]
+
+# The source of your backup
+SRC=[my home dir]
+
+# The destination
+# Note that the bucket need not exist
+# but does need to be unique amongst all
+# Amazon S3 users. So, choose wisely.
+DEST=s3+http://[my aws bucket name]
+
+tree -d -L 2 \
+  ${SRC}/Music/iTunes/iTunes\ Media/Music/ \
+  >${SRC}/music-list.txt
+
+duplicity \
+  --encrypt-key=${GPG_KEY} \
+  --sign-key=${GPG_KEY} \
+  --include=${SRC}/.vim \
+  --include=${SRC}/.vimrc \
+  --include=${SRC}/Books \
+  --include=${SRC}/Code \
+  --include=${SRC}/Documents \
+  --include=${SRC}/Journal \
+  --include=${SRC}/Library \
+  --include=${SRC}/Movies \
+  --include=${SRC}/music-list.txt \
+  --include=${SRC}/Pictures \
+  --include=${SRC}/School \
+  --include=${SRC}/bin \
+  --exclude=${SRC}/** \
+  ${SRC} ${DEST}
+
+rm ${SRC}/music-list.txt
+
+# Reset the ENV variables. Don't need them sitting around
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+export PASSPHRASE=
+</pre>
+Notice I'm not backing up my music directory, but a tree-generated listing of
+what music I have. The cost doubles when I store my music, so I figure when a
+localized apocalypse hits northern Virginia and my family, loved ones, and I
+are vacationing in San Francisco, I'll just torrent all the music I've bought.
+Let the file-sharers back my collection up for me.
+
+<p>I did one initial sync, which took about a day. After the first sync, each
+subsequent run only tracks changes, so future backups will be quick.
+
+<h3>Automating it</h3>
+
+<p>Time to edit the crontab, which will cause cron to automatically run the
+incremental backup every so often.
+<pre><code>sudo crontab -e</code></pre>
+
+<p>This is what my crontab looks like
+<pre><code>#.---------------- minute (0 - 59) 
+#|   .------------- hour (0 - 23)
+#|   |   .---------- day of month (1 - 31)
+#|   |   |   .------- month (1 - 12) OR jan,feb,mar,apr ... 
+#|   |   |   |  .----- day of week (0 - 7) (Sunday=0 or 7)  OR
+#|   |   |   |  |       sun,mon,tue,wed,thu,fri,sat 
+#|   |   |   |  |
+#*   *   *   *  *  command to be executed
+0   17  *   *   * /Users/job/bin/dup-backup
+</code></pre>
+
+<p>This sets dup-backup to run every night at 8PM.
+
+<h3>Footnotes</h3>
+
+<a name="fn1">[0]</a> I keep forgetting MacPorts exists.
+
