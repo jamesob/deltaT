@@ -17,4 +17,4 @@
   (route/files "/" {:root "static"})
   (route/not-found "Uh-oh!"))
 
-(run-jetty site {:port 8080})
+(run-jetty site {:port 80})

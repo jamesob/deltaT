@@ -3,6 +3,8 @@ pom.xml
 lib
 classes
 posts
-blag
+static
+src/txture/config.clj
+src/txture/core.clj
 *.swp
 
