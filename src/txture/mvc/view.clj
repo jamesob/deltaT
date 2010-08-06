@@ -16,6 +16,9 @@
 ;; ---------------------------------
 
 (defn- html-doc [title head body] 
+  (println title)
+  (println head)
+  (println body)
   (html (doctype :html5)
     [:html 
      head
@@ -91,6 +94,7 @@
 (defn- wrap-post
   "Wraps and displays post with title, post-date, etc."
   [post]
+  (println post)
   [:div.post
    [:div.post-heading
     [:h2.post-title 
@@ -150,7 +154,6 @@
   (let [header (breadcrumb-header-post post)
         main (put-in-main (wrap-post post))
         all-content (add-footer (add-sidebar main))]
-    (println (post-head post))
     (html-doc
       (post :title)
       (post-head post)

@@ -1,5 +1,5 @@
-{:title "Fixing poor volume adjustment in Lucid Lynx (Master vs. PCM)"
- :labels (list "volume", "ubuntu lucid", "master", "pcm")}
+:title: Fixing poor volume adjustment in Lucid Lynx (Master vs. PCM)
+:labels: volume, ubuntu lucid, master, pcm
 
 <p>I recently updated my Ubuntu installation to Lucid Lynx and I noticed funky behavior in the volume adjustment. It seems in Lynx that changing the volume of the Master channel results in poor volume adjustment; the lowest 20% of the volume bar is where all of the change in amplitude happens.
 

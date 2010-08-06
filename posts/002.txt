@@ -1,5 +1,5 @@
-{:title "Ubuntu 10.04 LTS on Aluminum MacBook Pro 6,2"
- :labels (list "ubuntu", "macbookpro6,2", "lucid", "10.04")}
+:title: Ubuntu 10.04 LTS on Aluminum MacBook Pro 6,2
+:labels: ubuntu, macbookpro6,2, lucid, 10.04
 
 Lack of a tiling window manager drove me away from OS X rapidly. 
 OS X, however, is irreplacable for things like

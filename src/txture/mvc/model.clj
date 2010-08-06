@@ -62,6 +62,7 @@
   "Retrieve the `n` most recent posts."
   [n]
   (let [postfiles (take n (sort-by-time (get-all-posts-seq)))]
+    (println postfiles)
     (files->posts postfiles)))
 
 

@@ -1,5 +1,5 @@
-{:title "Writing a robot driver with Clojure"
- :labels (list "clojure", "robots", "state")}
+:title: Writing a robot driver with Clojure
+:labels: clojure, robots, state
 
 So after watching a few of the <a href="http://clojure.blip.tv">Hickey talks</a>,
 I got excited about Clojure (a modern, practical Lisp that'll leverage

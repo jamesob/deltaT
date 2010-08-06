@@ -1,5 +1,5 @@
-{:title "Backing up personal data with Amazon's S3 and Duplicity"
- :labels (list "backup" "personal data" "amazon s3" "duplicity")}
+:title: Backing up personal data with Amazon's S3 and Duplicity
+:labels: backup personal data amazon s3 duplicity
 
 <p>I have a lot data on my computer that I'd be very sad if I lost; I'm sure
 most other people do, too.

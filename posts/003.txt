@@ -1,5 +1,5 @@
-{:title "xsession fail"
- :labels (list "xsession", "xinitrc")}
+:title: xsession fail
+:labels: xsession, xinitrc
 
 <p>In Ubuntu 10.04, modifying or creating <span class="inline-code">
 .xinitrc</span>/<span class="inline-code">.xsession</span> does a sweet nothing.
