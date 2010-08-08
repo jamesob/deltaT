@@ -134,7 +134,7 @@ incremental backup every so often.
 #|   |   |   |  |       sun,mon,tue,wed,thu,fri,sat 
 #|   |   |   |  |
 #*   *   *   *  *  command to be executed
-0   17  *   *   * /Users/job/bin/dup-backup
+0    20  *   *  * /Users/job/bin/dup-backup
 </code></pre>
 
 <p>This sets dup-backup to run every night at 8PM.
