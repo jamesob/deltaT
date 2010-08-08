@@ -8,9 +8,6 @@
 ;; ---------------------------------
 
 (defn- html-doc [title head body] 
-  (println title)
-  (println head)
-  (println body)
   (html (doctype :html5)
     [:html 
      head

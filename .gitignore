@@ -3,4 +3,5 @@ pom.xml
 lib
 classes
 *.swp
+posts/sample.txt
 
