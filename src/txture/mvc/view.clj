@@ -4,14 +4,6 @@
      hiccup.core
      hiccup.page-helpers))
 
-;; misc. utility fns
-;; -----------------
-
-(defn- labels-to-comma-str
-  "Convert a post's labels to a comma-delimiter string."
-  [post-labels]
-  (reduce str (drop-last (interleave post-labels (cycle '(", "))))))
- 
 ;; fns which return entire HTML docs
 ;; ---------------------------------
 
@@ -47,7 +39,7 @@
   [post]
   (generic-head
     (post :title)
-    [:meta {:name "keywords" :content (labels-to-comma-str (post :labels))}]
+    [:meta {:name "keywords" :content (post :labels-str)}]
     [:meta {:name "description" :content *description*}]))
 
 ;; fns which return div#page
@@ -96,21 +88,10 @@
   [post]
   (println post)
   [:div.post
-   [:div.post-heading
-    [:h2.post-title 
-     [:a {:href (str "/post/" (post :short-name))}
-      (post :title)]]
-    [:h3.post-date (post :date)]]
-   [:div.post-body
-    (for [line (post :body)]
-      (str line \newline))]
-   [:div.post-footer
-    [:div.permalink "[" [:a {:href (str "/post/" (post :short-name))}
-                         "permalink"] "]"]
-    [:div.labels 
-     [:span.inline-code "filed under: "]
-     (labels-to-comma-str (post :labels))]]])
-
+   (*before-post* post)
+   (*post-body* post)
+   (*after-post* post)])
+   
 (defn- put-in-main
   "Put content in main."
   [content]
@@ -119,22 +100,12 @@
 (defn- add-sidebar
   "Adds a sidebar to the left of the content div."
   [html-content]
-
-  (defn- gen-sidebar []
-    [:div#side-desc [:h2 "about this"] *description*])
-
-  [:div html-content [:div#sidebar (gen-sidebar)]])
+  [:div html-content 
+   [:div#sidebar (*gen-sidebar*)]])
 
 (defn- add-footer
   [html-content]
-
-  (defn- gen-footer []
-     [:div 
-      [:span.important *title*] 
-      " by " 
-      [:span.important *author*]])
-
-  [:div html-content [:div#footer (gen-footer)]])
+  [:div html-content [:div#footer (*gen-footer*)]])
 
 ;; fns to be used in `mvc.controller`
 ;; -----------------------------------
