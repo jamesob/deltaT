@@ -1,0 +1,177 @@
+title: Social security finally dragging its wagon
+labels: social security, welfare, armchair economics
+
+From a cute article in <a
+href="http://www.theatlantic.com/magazine/archive/2010/09/the-great-stock-myth/8178/1/">The
+Atlantic</a>:
+
+<blockquote><p>For decades, pundits have been warning that a time
+would come when Social Security would start to become a drain on the
+federal budget. Now it's happening. In 2010, for the first time, payouts to
+retirees and the disabled have exceeded the program's revenues from payroll
+taxes. Infusions from the general fund are now needed if the government is to
+keep mailing checks---a situation that is projected to become a permanent, and
+growing, problem by 2016.
+
+<p>That means that Social Security, too, is exposed to the performance of the
+stock market. Unfortunately, unlike the holders of 401(k) accounts, the
+beneficiaries are not aware of this, which means that they will not, for
+example, delay retirement until the market recovers. (In fact, Social
+Security is thought to cause older Americans to retire before they
+otherwise would.)</blockquote>
+
+I found the tone of the article hand-wavy, but it 
+did prompt me to a few observations.
+
+<h3>Lackluster performance in this decade's equities market</h3>
+<ol>
+    <li>Go to <a href="http://www.google.com/finance?q=INDEXSP:.INX">
+        Google Finance's page for the S&P 500</a>
+    <li>Set ``zoom'' to 10y.
+    <li>Notice that the equities market has floundered around for the past
+    decade; we are lower than we were in the early '90s.
+    <li>Slide the window around to previous decades, e.g. '90-'00, '80-'90, etc.
+    Notice an upward trend in each of them.
+
+    <div style="text-align: center">
+        <p style="margin-bottom: 1em;"><img style="width:400px; padding:1em;" src="/images/soc-sec/now.png">
+        <br />
+        (a) ~2000 - now
+
+        <p style="margin-bottom: 1em;"><img style="width:400px; padding:1em;" src="/images/soc-sec/90s.png">
+        <br />
+        (b) '90s - 2000
+
+        <p style="margin-bottom: 1em;"><img style="width:400px; padding:1em;" src="/images/soc-sec/80s.png">
+        <br />
+        (c) '80s - '90s
+
+        <p style="margin-bottom: 1em;"><img style="width:400px; padding:1em;" src="/images/soc-sec/70s.png">
+        <br />
+        (d) '70s - '80s
+</div>
+    <li>Notice the similarity between the seventies (Nixon-Ford-Carter) and now.
+</ol>
+
+Google Finance only offers a limited window of comparison. More
+telling might be to look at the '20s and '30s.
+
+<h3>Social Security is a leaky abstraction</h3>
+
+<p>The primary message of the above article is that Americans shouldn't
+necessarily expect a generous return (5-9% <a href="#fn2">[2]</a>) from the
+equities market despite the fact that, historically, that's what we've been
+given. This is a valid, almost trivial, claim: precise future predictions
+from historical observations are very tricky. What does this have to do with
+social security?
+
+<p>A problem with social security is that it's a leaky abstraction, meaning that
+while it claims to relieve Americans of the strenuous task of figuring out how
+and where to save their money for retirement, it does not do so in a complete or
+even desirable way. When you buy into social security, you necessarily buy the
+idea that the government knows best or, on average, better how to predict the
+future and invest assets accordingly. 
+
+<p>To force this presumption on Americans is embarrassing and ineffective.
+Ineffective? Note this excerpt from Wikipedia <a href="#fn0">[0]</a>:
+<blockquote>
+    [C]ritics point out [118] that under the Social Security laws as they
+    existed at that time, several thousand employees of Galveston County, Texas
+    were allowed to opt out of the Social Security program in the early 1980s,
+    and have their money placed in a private retirement plan instead. While
+    employees who earned $50,000 per year would have collected $1,302 per month
+    in Social Security benefits, the private plan paid them $6,843 per month.
+</blockquote>
+Is this an anecdote? Yes. Is it conclusive, scientific fact that private plans
+always and forever beat out social security? By no means. Is it an incidence
+worth considering because it alludes to the reality that an individual can
+outperform the government by leaps and bounds? Absolutely.
+
+<p>If the <i>Atlantic</i> writer quoted above is right, and there are financial
+concussions ahead in the equities market, you can bet there are people
+aware of this. If retirement investing were left to the individual, he could
+start hedging against cataclysms in the equities market by buying commodities or
+looking to foreign markets. Social security says, ``just shut up and leave it to
+me,'' as it finances America's towering deficit  by purchasing US bonds
+<a href="#fn3">[3]</a>.
+
+
+<h3>Wikipedia is full of shit</h3>
+
+<p>The word ``insurance'' is used 48 times in the Wikipedia article on American
+social security <a href="#fn0">[0]</a>. Frequently, an author of the Wikipedia 
+article describes social security as a type of insurance; this definition
+is then used as a false basis for shooting down unflattering comparisons to
+private retirement plans.
+                                                                     
+<p>Social security is not an insurance. Insurance is a tool used to hedge
+against risk; retirement is an eventuality, not a disaster. Apple's dictionary
+defines insurance as ``a thing providing protection against a possible
+eventuality''. Retirement is not a possible eventuality: statistically, it is
+almost a surety <a href="#fn4">[4]</a>. Just as pursuing life insurance after
+you've been diagnosed with cancer is ridiculous, so too is calling social
+security a type of insurance.
+
+<p>The reason an insurance policy can work in spite of inflation is because not
+all policy holders will ever cash in; in fact, often since the risk being hedged
+against by the policy holder is remote, only a minority ever see any benefit
+from taking out insurance. If you consider social security an insurance, you're
+necessarily saying that the overwhelming majority of policy holders will cash
+in, which reduces the social security fund to a leaky well used for long-term
+water storage.
+
+<p>Imagine insurance as a giant pool of water. When someone takes out a policy,
+they put a small amount of their own water into the giant pool on a regular
+basis. When someone covered under the insurance falls victim to the risk they've
+hedged against by taking out a policy, they take out a(n often much) larger
+portion of water than they've put in to mitigate damages they've experienced.
+
+<p> The giant pool, though, is evaporating at some rate because of inflation (an
+average of 1.929% per year <a href="#fn1">[1]</a>) and some water is lost in the
+process of removing it from the pond (overhead). These losses are worth it,
+though, because many people want to gamble against some awful, unlikely fate.
+
+<p>If you consider social security an insurance, most everyone who contributes
+water to the pond will <i>again withdrawal</i> their share. Because of the
+massive number of withdrawals, the amount of water lost during withdrawal
+becomes egregious. It's a system that doesn't make any sense for the needs of
+contributors.
+
+<h3>Alternatives</h3>
+
+<p>Perhaps some Americans do benefit from the government controlling a portion
+of their assets for retirement because they're incapable themselves. Instead of
+every citizen involuntarily surrendering a percentage of their income, those who
+feel the government does a better job could <b>elect</b> to place their money
+under governmental control. 
+
+<p>Oh wait; but then when returns offered by the government are dwarfed by
+private equivalents, as in the Texan case above, the program will shrivel and
+collapse, just as the public school system would if citizens were offered
+vouchers for private education. Why interrupt a perfectly good stream of
+mediocrity?
+
+<p>Of course, these observations are moot anyway: most sensible reform is
+infeasible because of the baby-boomers' entitlement to my generation's money.
+And so on. And so on.
+
+<p>Isn't the future going to be great.
+ 
+
+<div class="footnotes">
+    <h3>Footnotes</h3>
+
+    <a name="fn0">[0]</a>
+    http://en.wikipedia.org/wiki/Social_Security_(United_States) <br />
+    <a name="fn1">[1]</a>
+    http://inflationdata.com/inflation/Inflation_Rate/Long_Term_Inflation.asp
+    <br />
+    <a name="fn2">[2]</a>
+    http://findarticles.com/p/articles/mi_m1094/is_4_38/ai_111856309/
+    <br />
+    <a name="fn3">[3]</a> http://en.wikipedia.org/wiki/Social_Security_(United_States)#Trust_fund
+    <br />
+    <a name="fn4">[4]</a> <a href="http://en.wikipedia.org/wiki/Retirement">95%
+        of people above age 70 in the US are retired</a>.
+</div>
+

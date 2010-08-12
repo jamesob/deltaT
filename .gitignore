@@ -4,4 +4,5 @@ lib
 classes
 *.swp
 posts/sample.txt
+*.DS_Store
 
