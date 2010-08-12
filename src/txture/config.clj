@@ -1,14 +1,10 @@
 (ns txture.config
-  (:import 
-     [java.util Date]
-     [java.text DateFormat]))
-
-;;; THINGS YOU SHOULD ABSOLUTELY MODIFY
-;;; -----------------------------------
+  "Things you should absolutely modify.")
 
 ;; blog characteristics
 ;; --------------------
 
+<<<<<<< HEAD
 (def *author* "jamesob")
 (def *title* "&Delta;t")
 (def *subtitle* "")
@@ -25,14 +21,6 @@
 ;; leave *posts-dir* defined as "posts/", the posts folder will be alongside
 ;; "src/" and "static/".
 (def *posts-dir* "posts/")
-
-;; only look for posts with this file extension. To pick up any file extension,
-;; use ".*".
-(def *posts-ext* ".txt")
-
-;; If you haven't screwed with `src/txture/core.clj`, then any absolute path
-;; referred to within a reference in the HTML originates in `static/`.
-(def *css-loc* "/css/log.css")
 
 ;; the number of posts shown on the main page
 (def *num-posts-shown* 10)
@@ -58,6 +46,7 @@
 ;;   You may use the `post` attributes as they are listed in modifying the
 ;;   functions that follow.
 ;;
+
 (defn *before-post*
   "Content that precedes a post."
   [post]
@@ -95,33 +84,11 @@
 ;; footer display functions
 ;; ------------------------
    
-(defn *gen-footer* []
+(defn *gen-footer* 
   "Returns footer content."
+  []
   [:div 
    [:span.important *title*] 
    " by " 
    [:span.important *author*]])
-
-;;; THINGS YOU PROBABLY SHOULDN'T MODIFY BUT ARE HERE ANYWAY
-;;; --------------------------------------------------------
-
-;; where post date information is written out
-(def *secret-date-file* "metadata/post-dates.data.clj")
-
-;; used globally for date/time formatting
-(def *date-formatter* (. DateFormat getDateTimeInstance
-                         DateFormat/MEDIUM DateFormat/SHORT))
-
-(defn *datetime-str->long*
-  "Given `datetime-str`, return the date's long value."
-  [dstr]
-  (let [jdate (.parse *date-formatter* dstr)]
-    (.getTime jdate)))
-
-(defn *datetime-long->str*
-  "Given `dlong`, return the date's corresponding string value."
-  [dlong]
-  (let [jdate (new Date dlong)]
-    (.format *date-formatter* jdate)))
- 
 

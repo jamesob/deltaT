@@ -1,6 +1,7 @@
 (ns txture.mvc.models.post
   (:require 
-     [clojure.contrib.str-utils2 :as str-utils])
+     [clojure.contrib.str-utils2 :as str-utils]
+     [txture.dates :as dates])
   (:use 
      clojure.contrib.duck-streams
      txture.config)
@@ -57,7 +58,7 @@
   (defn- get-tag+val 
     "Return a list of a line's tag and value. May return an empty list."
     [line]
-    (drop 1 (re-find #"\s*:(\w+):\s+(.*)" line)))
+    (drop 1 (re-find #"\s*(\w+):\s+(.*)" line)))
   (defn- line->map 
     "Take in one line, presumably of the form ':tag: value' and return
     {:tag 'val'} if the tag is in `kws`."
@@ -104,7 +105,7 @@
         labels-list (comma-str->list (h-map :labels))
         plink (file=>permalink-str file)
         shortname (file=>shortname-str file)
-        date-str (*datetime-long->str* last-mod)]
+        date-str (dates/datetime-long->str last-mod)]
     (struct-map post
                 :title title
                 :subtitle subtitle
