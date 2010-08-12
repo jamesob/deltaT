@@ -13,7 +13,7 @@ div#main {
 }
 div#main h3.post-date {
   font-size: 8pt;
-  color: #6e6e6e;
+  color: #2a2a2a;
   margin: 0px;
   padding: 0px;
 }
@@ -23,13 +23,28 @@ div#main div.post div.date { font-size: 16px; }
 div#main div.post div.post-heading { margin-bottom: 2em; }
 div#main div.post div.post-body { padding-left: 1em; }
 div#main div.post h2.post-title {
-  color: #373737;
+  color: #151515;
   font-family: 'Helvetica';
   margin: 0;
 }
 div#main div.post h2.post-title a {
-  color: #373737;
+  color: #151515;
   text-decoration: none;
+}
+div#main div.post h3 {
+  font-weight: bold;
+  color: #2a2a2a;
+  font-size: 10pt;
+}
+div#main div.post h4 {
+  font-weight: bold;
+  color: #668855;
+  font-size: 10pt;
+}
+div#main div.post h3.post-date {
+  font-weight: normal;
+  color: #2a2a2a;
+  font-size: 8pt;
 }
 div#main div.post div.post-footer {
   margin-top: 4em;
@@ -92,7 +107,7 @@ a { color: #946965; }
 h3 {
   font-size: 12pt;
   font-weight: normal;
-  color: #6e6e6e;
+  color: #2a2a2a;
 }
 h4 {
   font-size: 12pt;
