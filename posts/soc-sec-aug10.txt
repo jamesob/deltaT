@@ -62,7 +62,7 @@ telling might be to look at the '20s and '30s.
 necessarily expect a generous return (5-9% <a href="#fn2">[2]</a>) from the
 equities market despite the fact that, historically, that's what we've been
 given. This is a valid, almost trivial, claim: precise future predictions
-from historical observations are very tricky. What does this have to do with
+from historical observations are prone to error. What does this have to do with
 social security?
 
 <p>A problem with social security is that it's a leaky abstraction, meaning that
