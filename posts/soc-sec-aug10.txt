@@ -29,7 +29,7 @@ did prompt me to a few observations.
         Google Finance's page for the S&P 500</a>
     <li>Set ``zoom'' to 10y.
     <li>Notice that the equities market has floundered around for the past
-    decade; we are lower than we were in the early '90s.
+    decade; we are lower than we were in 2000.
     <li>Slide the window around to previous decades, e.g. '90-'00, '80-'90, etc.
     Notice an upward trend in each of them.
 
