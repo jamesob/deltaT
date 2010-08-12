@@ -132,14 +132,14 @@ process of removing it from the pond (overhead). These losses are worth it,
 though, because many people want to gamble against some awful, unlikely fate.
 
 <p>If you consider social security an insurance, most everyone who contributes
-water to the pond will <i>again withdrawal</i> their share. Because of the
+water to the pond <i>will withdrawal</i> their share. Because of the
 massive number of withdrawals, the amount of water lost during withdrawal
 becomes egregious. It's a system that doesn't make any sense for the needs of
 contributors.
 
 <h3>Alternatives</h3>
 
-<p>Perhaps some Americans do benefit from the government controlling a portion
+<p>Perhaps some Americans benefit from the government controlling a portion
 of their assets for retirement because they're incapable themselves. Instead of
 every citizen involuntarily surrendering a percentage of their income, those who
 feel the government does a better job could <b>elect</b> to place their money
