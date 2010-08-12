@@ -127,3 +127,8 @@ pre {
   background-color: #ffffff;
   border: solid 1px #303030;
 }
+blockquote {
+  border-left: 1px solid #000000;
+  padding-left: 10px;
+}
+div.footnotes { margin-top: 3em; }

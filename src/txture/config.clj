@@ -4,7 +4,6 @@
 ;; blog characteristics
 ;; --------------------
 
-<<<<<<< HEAD
 (def *author* "jamesob")
 (def *title* "&Delta;t")
 (def *subtitle* "")
@@ -21,6 +20,9 @@
 ;; leave *posts-dir* defined as "posts/", the posts folder will be alongside
 ;; "src/" and "static/".
 (def *posts-dir* "posts/")
+
+(def *css-loc* "/stylesheets/main.css")
+(def *posts-ext* ".txt")
 
 ;; the number of posts shown on the main page
 (def *num-posts-shown* 10)
